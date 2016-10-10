@@ -29,6 +29,12 @@ class Pokemon extends CI_Controller{
         $tipe = $this->input->post('tipe'); // dapatkan nilai inputan tipe
         // TODO: panggil fungsi insert di pokemon_model
         // TODO: load view pokemon_insert_action
+        $data = array(
+                        'nama'=>$nama,
+                        'tipe' => $tipe
+                     );
+        $this->pokemon_model->insert($data,'pokemon');
+        redirect('pokemon/index/');
     }
 
     // URL : http://localhost/[directory]/index.php/pokemon/update_form/[id]
@@ -44,9 +50,17 @@ class Pokemon extends CI_Controller{
     public function update_action($id){
         $nama = $this->input->post('nama'); // dapatkan nilai inputan nama
         $tipe = $this->input->post('tipe'); // dapatkan nilai inputan tipe
-        // TODO: panggil fungsi update di pokemon_model
-        // TODO: load view pokemon_update_action
+            $data = array(
+                'id'=>$id,
+                'nama' => $nama,
+                'tipe' => $tipe
+            );
+                 
         
+        // TODO: panggil fungsi update di pokemon_model
+        $this->pokemon_model->update($data);
+        // TODO: load view pokemon_update_action
+        $this->load->view(pokemon_update_action);
     }
 
     // URL : http://localhost/[directory]/index.php/delete/[id]

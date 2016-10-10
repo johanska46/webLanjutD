@@ -24,8 +24,10 @@ class Pokemon_model extends CI_Model{
      * yang terdiri dari pasangan key=>value. Key adalan nama field, sedangkan value adalah
      * nilai field
      */
-    public function insert($data){
+    public function insert($data,$table){
         // TODO: Modif bagian ini
+        $this->db->insert($table,$data);
+        
     }
 
     /* Fungsi ini mengupdate data ke dalam tabel pokemon yang memiliki id=$id.
@@ -33,8 +35,15 @@ class Pokemon_model extends CI_Model{
      * yang terdiri dari pasangan key=>value. Key adalan nama field, sedangkan value adalah
      * nilai field
      */
-    public function update($data, $id){
+    public function update($data){
         // TODO: Modif bagian ini
+        
+        foreach($data as $pokemon){
+        $id = $pokemon->id;
+        
+        $this->db->where($id);
+        $this->db->update('pokemon',$data);
+            }
     }
 
     /* Fungsi ini menghapus satu record dari tabel pokemon yan memiliki id=$id*/

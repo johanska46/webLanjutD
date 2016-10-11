@@ -33,8 +33,10 @@ class Pokemon_model extends CI_Model{
      * yang terdiri dari pasangan key=>value. Key adalan nama field, sedangkan value adalah
      * nilai field
      */
-    public function update($data, $id){
+    public function update($id, $data){
         // TODO: Modif bagian ini
+        $this->db->where($id);
+        $this->db->update('pokemon',$id);
     }
 
     /* Fungsi ini menghapus satu record dari tabel pokemon yan memiliki id=$id*/
